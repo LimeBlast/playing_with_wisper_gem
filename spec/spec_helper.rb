@@ -18,7 +18,6 @@
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 
 require 'wisper/rspec/matchers'
-require 'wisper/rspec/stub_wisper_publisher'
 
 RSpec.configure do |config|
 
