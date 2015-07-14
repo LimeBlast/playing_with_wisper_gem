@@ -21,7 +21,7 @@ group :development, :test do
   gem 'web-console', '~> 2.0'
   gem 'spring'
   gem 'rspec-rails', '~> 3.3'
-  gem 'wisper-rspec', '~> 0.0.2'
+  gem 'wisper-rspec', '~> 0.0.2', require: false
   gem 'rspec-virtus', '~> 1.0.2'
 end
 
