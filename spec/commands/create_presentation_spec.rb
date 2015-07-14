@@ -10,8 +10,7 @@ RSpec.describe CreatePresentation do
     let(:valid?) { true }
 
     it 'broadcasts :create_presentation_successful' do
-      command = described_class.new(form)
-      expect(command.execute).to broadcast(:create_presentation_successful)
+      expect(described_class.new(form).execute).to broadcast(:create_presentation_successful)
     end
   end
 
