@@ -9,6 +9,7 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
+gem 'wisper', '~> 1.6.0'
 
 group :development do
   gem 'guard', '~> 2.12.8', require: false
@@ -23,4 +24,6 @@ group :development, :test do
   gem 'wisper-rspec', '~> 0.0.2'
 end
 
-gem 'wisper', '~> 1.6.0'
+group :test do
+  gem 'shoulda-matchers', '~> 2.8.0', require: false
+end
