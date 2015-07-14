@@ -43,6 +43,7 @@ group :development, :test do
   gem 'spring'
 
   gem 'rspec-rails', '~> 3.3'
+  gem 'wisper-rspec', '~> 0.0.2'
 end
 
 gem 'wisper', '~> 1.6.0'
