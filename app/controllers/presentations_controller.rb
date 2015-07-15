@@ -4,26 +4,17 @@ class PresentationsController < ApplicationController
   end
 
   def new
-    @presentation = CreatePresentationForm.new
+    @form = CreatePresentationForm.new
   end
 
   def create
     form = CreatePresentationForm.new(params.fetch(:create_presentation_form))
 
-    @presentation = CreatePresentation.new(form)
+    command = CreatePresentation.new(form)
 
-    @presentation.on(:create_presentation_successful) { create_presentation_successful }
-    @presentation.on(:create_presentation_failed) { |presentation| create_presentation_failed presentation }
+    command.on(:create_presentation_successful) { |result| redirect_to presentation_path(result) }
+    command.on(:create_presentation_failed) { |result| @form = result; render action: :new }
 
-    @presentation.call
-  end
-
-  def create_presentation_successful
-    redirect_to presentation_path(@presentation)
-  end
-
-  def create_presentation_failed(form)
-    @presentation = form
-    render action: :new
+    command.call
   end
 end
