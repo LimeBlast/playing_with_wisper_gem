@@ -1,0 +1,49 @@
+<%= render 'partials/form_errors', form: form %>
+
+<%= form_for form, url: url do |f| %>
+  <div>
+    <%= f.label :title, 'Title' %>
+  </div>
+  <div>
+    <%= f.text_field :title, size: '47', label_tag: 'title' %>
+  </div>
+
+  <div>
+    <%= f.label :who, 'Who' %>
+  </div>
+  <div>
+    <%= f.text_area :who, size: '60x4' %>
+  </div>
+
+  <div>
+    <%= f.label :action, 'Action' %>
+  </div>
+  <div>
+    <%= f.text_area :action, size: '60x4' %>
+  </div>
+
+  <div>
+    <%= f.label :baggage, 'Baggage' %>
+  </div>
+  <div>
+    <%= f.text_area :baggage, size: '60x4' %>
+  </div>
+
+  <div>
+    <%= f.label :important, 'Important' %>
+  </div>
+  <div>
+    <%= f.text_area :important, size: '60x4' %>
+  </div>
+
+  <div>
+    <%= f.label :plan, 'Plan' %>
+  </div>
+  <div>
+    <%= f.text_area :plan, size: '60x4' %>
+  </div>
+
+  <div>
+    <%= f.submit 'Create' %>
+  </div>
+<% end %>
