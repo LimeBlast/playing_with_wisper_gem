@@ -12,6 +12,8 @@ class PresentationsController < ApplicationController
 
     command = CreatePresentation.new(form)
 
+    command.subscribe(PresentationNotifier.new)
+
     command.on(:create_presentation_successful) { |result| redirect_to presentation_path(result) }
     command.on(:create_presentation_failed)     { |result| @form = result; render action: :new }
 
