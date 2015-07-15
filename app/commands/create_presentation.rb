@@ -9,7 +9,8 @@ class CreatePresentation
 
   def call
     if form.valid?
-      broadcast(:create_presentation_successful)
+      presentation = Presentation.create(form.attributes)
+      broadcast(:create_presentation_successful, presentation)
     else
       broadcast(:create_presentation_failed, form)
     end
