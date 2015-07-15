@@ -2,6 +2,21 @@ require 'rails_helper'
 require 'wisper/rspec/stub_wisper_publisher'
 
 RSpec.describe PresentationsController, type: :controller do
+  describe 'GET #show' do
+    let(:presentation_class) { class_double('Presentation').as_stubbed_const }
+    let(:presentation_object) { double }
+    let(:presentation_id) { '1' }
+
+    before :each do
+      expect(presentation_class).to receive(:find).with(presentation_id).and_return(presentation_object)
+      get :show, id: presentation_id
+    end
+
+    it 'renders :show template' do
+      expect(controller).to render_template(:show)
+    end
+  end
+
   describe 'GET #new' do
     let(:form_class) { class_double('CreatePresentationForm').as_stubbed_const }
     let(:form_object) { double }
