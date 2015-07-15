@@ -7,7 +7,7 @@ class CreatePresentation
     @form = form
   end
 
-  def execute
+  def call
     if form.valid?
       broadcast(:create_presentation_successful)
     else

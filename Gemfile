@@ -8,7 +8,7 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
-gem 'wisper', '~> 1.6.0'
+gem 'wisper', '~> 2.0.0.rc1'
 gem 'virtus', '~> 1.0.5'
 
 group :development do
