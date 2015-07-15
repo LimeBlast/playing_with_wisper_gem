@@ -40,6 +40,22 @@ RSpec.describe PresentationsController, type: :controller do
         expect(response).to redirect_to(presentation_path(result))
       end
     end
+
+    context 'create_presentation_failed' do
+      let(:result) { double }
+
+      before do
+        stub_wisper_publisher('CreatePresentation', :call, :create_presentation_failed, result)
+        post :create, create_presentation_form: {}
+      end
+
+      it 'assigns result to @form' do
+        expect(assigns(:form)).to eq result
+      end
+
+      it 'renders :new template' do
+        expect(controller).to render_template(:new)
+      end
+    end
   end
 end
-
