@@ -39,8 +39,11 @@ RSpec.describe PresentationsController, type: :controller do
     let(:form_class) { class_double('CreatePresentationForm').as_stubbed_const }
     let(:form_object) { double }
 
+    let(:presentation_notifier) { class_double('PresentationNotifier').as_stubbed_const }
+
     before :each do
       expect(form_class).to receive(:new).and_return(form_object)
+      expect(presentation_notifier).to receive(:new)
     end
 
     context 'create_presentation_successful' do
