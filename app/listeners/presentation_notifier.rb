@@ -1,12 +1,5 @@
 class PresentationNotifier
   def create_presentation_successful(presentation)
-
-      puts '#############################################'
-      puts '#############################################'
-      puts presentation
-      puts '#############################################'
-      puts '#############################################'
-
-      PresentationMailer.presentation_notifier(presentation).deliver_now
+    PresentationMailer.presentation_notifier(presentation).deliver_later
   end
 end
