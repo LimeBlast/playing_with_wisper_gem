@@ -29,7 +29,19 @@ Rails.application.configure do
   # Tell Action Mailer not to deliver emails to the real world.
   # The :test delivery method accumulates sent emails in the
   # ActionMailer::Base.deliveries array.
-  config.action_mailer.delivery_method = :test
+  #config.action_mailer.delivery_method = :test
+
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.default_url_options = { host: 'localhost:3000' }
+  config.action_mailer.delivery_method     = :smtp
+  config.action_mailer.smtp_settings       = {
+    :user_name      => '2580137849e2f861a',
+    :password       => '86692b54433e2b',
+    :address        => 'mailtrap.io',
+    :domain         => 'mailtrap.io',
+    :port           => '2525',
+    :authentication => :cram_md5
+  }
 
   # Randomize the order test cases are executed.
   config.active_support.test_order = :random

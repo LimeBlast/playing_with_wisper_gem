@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'/>
+</head>
+<body>
+<h1>A presentation has been posted</h1>
+
+<p>A presentation with the title <%= @presentation.title %> has been posted. You can <%= link_to 'view the presentation here', presentation_url(@presentation) %></p>
+</body>
+</html>
