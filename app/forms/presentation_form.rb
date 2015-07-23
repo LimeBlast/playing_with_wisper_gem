@@ -10,4 +10,10 @@ class PresentationForm
   attribute :plan, String
 
   validates :title, :who, :action, :baggage, :important, :plan, presence: true
+
+  def self.build(presentation)
+    attributes = presentation.attributes
+    attributes.slice!('title', 'who', 'action', 'baggage', 'important', 'plan')
+    new(attributes)
+  end
 end

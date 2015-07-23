@@ -1,1 +1,6 @@
-<%= render 'presentation_form', form: @form, url: presentations_path %>
+<%= render 'presentation_form',
+           form:   @form,
+           url:    presentations_path,
+           method: :post,
+           submit: 'Create'
+%>

@@ -1,6 +1,6 @@
 <%= render 'partials/form_errors', form: form %>
 
-<%= form_for form, url: url do |f| %>
+<%= form_for form, url: url, method: method do |f| %>
   <div>
     <%= f.label :title, 'Title' %>
   </div>
@@ -44,6 +44,6 @@
   </div>
 
   <div>
-    <%= f.submit 'Create' %>
+    <%= f.submit submit %>
   </div>
 <% end %>

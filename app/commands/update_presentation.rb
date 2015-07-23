@@ -1,18 +1,19 @@
 class UpdatePresentation
   include Wisper::Publisher
 
-  attr_reader :form
+  attr_reader :form, :presentation
 
-  def initialize(form)
-    @form = form
+  def initialize(form, presentation)
+    @form         = form
+    @presentation = presentation
   end
 
   def call
     if form.valid?
-      presentation = Presentation.create(form.attributes)
-      broadcast(:create_presentation_successful, presentation)
+      presentation.update_attributes(form.attributes)
+      broadcast(:successful, presentation)
     else
-      broadcast(:create_presentation_failed, form)
+      broadcast(:failed, form)
     end
   end
 end
