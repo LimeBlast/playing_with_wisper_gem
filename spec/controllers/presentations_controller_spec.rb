@@ -18,7 +18,7 @@ RSpec.describe PresentationsController, type: :controller do
   end
 
   describe 'GET #new' do
-    let(:form_class) { class_double('CreatePresentationForm').as_stubbed_const }
+    let(:form_class) { class_double('PresentationForm').as_stubbed_const }
     let(:form_object) { double }
 
     before :each do
@@ -36,7 +36,7 @@ RSpec.describe PresentationsController, type: :controller do
   end
 
   describe 'POST #create' do
-    let(:form_class) { class_double('CreatePresentationForm').as_stubbed_const }
+    let(:form_class) { class_double('PresentationForm').as_stubbed_const }
     let(:form_object) { double }
 
     let(:presentation_notifier) { class_double('PresentationNotifier').as_stubbed_const }
@@ -51,7 +51,7 @@ RSpec.describe PresentationsController, type: :controller do
 
       before do
         stub_wisper_publisher('CreatePresentation', :call, :create_presentation_successful, result)
-        post :create, create_presentation_form: {}
+        post :create, presentation_form: {}
       end
 
       it 'redirects' do
@@ -64,7 +64,7 @@ RSpec.describe PresentationsController, type: :controller do
 
       before do
         stub_wisper_publisher('CreatePresentation', :call, :create_presentation_failed, result)
-        post :create, create_presentation_form: {}
+        post :create, presentation_form: {}
       end
 
       it 'assigns result to @form' do

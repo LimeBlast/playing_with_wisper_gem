@@ -1,4 +1,4 @@
-class CreatePresentationForm
+class PresentationForm
   include ActiveModel::Model
   include Virtus.model
 

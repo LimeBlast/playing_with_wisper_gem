@@ -4,12 +4,12 @@ RSpec.feature 'Planning a presentation', type: :feature do
   scenario 'happy path' do
     visit '/presentations/new'
 
-    fill_in 'create_presentation_form[title]', with: 'title title title'
-    fill_in 'create_presentation_form[who]', with: 'who who who'
-    fill_in 'create_presentation_form[action]', with: 'action action action'
-    fill_in 'create_presentation_form[baggage]', with: 'baggage baggage baggage'
-    fill_in 'create_presentation_form[important]', with: 'important important important'
-    fill_in 'create_presentation_form[plan]', with: 'plan plan plan'
+    fill_in 'presentation_form[title]', with: 'title title title'
+    fill_in 'presentation_form[who]', with: 'who who who'
+    fill_in 'presentation_form[action]', with: 'action action action'
+    fill_in 'presentation_form[baggage]', with: 'baggage baggage baggage'
+    fill_in 'presentation_form[important]', with: 'important important important'
+    fill_in 'presentation_form[plan]', with: 'plan plan plan'
     click_button 'Create'
 
     expect(page).to have_content('title title title')

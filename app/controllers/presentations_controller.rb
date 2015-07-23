@@ -4,11 +4,11 @@ class PresentationsController < ApplicationController
   end
 
   def new
-    @form = CreatePresentationForm.new
+    @form = PresentationForm.new
   end
 
   def create
-    form = CreatePresentationForm.new(params.fetch(:create_presentation_form))
+    form = PresentationForm.new(params.fetch(:presentation_form))
 
     command = CreatePresentation.new(form)
 

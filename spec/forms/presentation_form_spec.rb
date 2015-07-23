@@ -4,9 +4,9 @@ require 'virtus'
 require 'rspec-virtus'
 require 'shoulda-matchers'
 
-require_relative '../../app/forms/create_presentation_form'
+require_relative '../../app/forms/presentation_form'
 
-RSpec.describe CreatePresentationForm do
+RSpec.describe PresentationForm do
 
   describe 'attributes' do
     it { should validate_presence_of(:title) }
