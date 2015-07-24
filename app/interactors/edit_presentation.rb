@@ -1,5 +1,5 @@
 class EditPresentation
   include Interactor::Organizer
 
-  organize FindPresentation, PopulatePresentationForm
+  organize FindPresentation, BuildPresentationForm
 end

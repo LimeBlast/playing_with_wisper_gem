@@ -1,4 +1,4 @@
-class PopulatePresentationForm
+class BuildPresentationForm
   include Interactor
 
   delegate :presentation, to: :context
