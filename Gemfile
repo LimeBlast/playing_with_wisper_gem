@@ -12,6 +12,7 @@ gem 'wisper', '~> 2.0.0.rc1'
 gem 'virtus', '~> 1.0.5'
 gem 'delayed_job', '~> 4.0.6'
 gem 'delayed_job_active_record', '~> 4.0.3'
+gem 'interactor', '~> 3.1.0'
 
 group :development do
   gem 'guard', '~> 2.12.8', require: false
