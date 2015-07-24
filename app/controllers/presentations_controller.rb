@@ -25,12 +25,14 @@ class PresentationsController < ApplicationController
   end
 
   def update
+    presentation = Presentation.find(params.fetch(:id))
+
     form = PresentationForm.new(params.fetch(:presentation_form))
 
-    command = UpdatePresentation.new(form, params.fetch(:id))
+    command = UpdatePresentation.new(form, presentation)
     command.subscribe(PresentationNotifier.new)
     command.on(:successful) { |presentation| redirect_to presentation_path(presentation) }
-    command.on(:failed) { |form, presentation| @form = form; @presentation = presentation; render action: :edit }
+    command.on(:failed) { |form| @form = form; @presentation = presentation; render action: :edit }
     command.call
   end
 end
