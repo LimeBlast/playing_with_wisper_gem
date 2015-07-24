@@ -12,15 +12,16 @@ class PresentationsController < ApplicationController
 
     command = CreatePresentation.new(form)
     command.subscribe(PresentationNotifier.new)
-    command.on(:successful) { |result| redirect_to presentation_path(result) }
-    command.on(:failed) { |result| @form = result; render action: :new }
+    command.on(:successful) { |presentation| redirect_to presentation_path(presentation) }
+    command.on(:failed) { |form| @form = form; render action: :new }
     command.call
   end
 
   def edit
-    @presentation = Presentation.find(params.fetch(:id))
-
-    @form = PresentationForm.build(@presentation)
+    command = FindPresentation.new(params.fetch(:id))
+    command.on(:successful) { |presentation| @form = PresentationForm.build(presentation); @presentation = presentation }
+    command.on(:failed) { render_not_found }
+    command.call
   end
 
   def update
@@ -30,8 +31,8 @@ class PresentationsController < ApplicationController
 
     command = UpdatePresentation.new(form, presentation)
     command.subscribe(PresentationNotifier.new)
-    command.on(:successful) { |result| redirect_to presentation_path(result) }
-    command.on(:failed)     { |result| @form = result; @presentation = presentation; render action: :edit }
+    command.on(:successful) { |presentation| redirect_to presentation_path(presentation) }
+    command.on(:failed) { |form| @form = form; @presentation = presentation; render action: :edit }
     command.call
   end
 end
