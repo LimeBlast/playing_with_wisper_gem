@@ -1,6 +1,12 @@
 class PresentationsController < ApplicationController
   def show
-    @presentation = Presentation.find(params.fetch(:id))
+    result = FindPresentation.call({ id: params.fetch(:id) })
+
+    if result.success?
+      @presentation = result.presentation
+    else
+      render_not_found
+    end
   end
 
   def new
@@ -18,21 +24,40 @@ class PresentationsController < ApplicationController
   end
 
   def edit
-    command = FindPresentation.new(params.fetch(:id))
-    command.on(:successful) { |presentation| @form = PresentationForm.build(presentation); @presentation = presentation }
-    command.on(:failed) { render_not_found }
-    command.call
+    result = EditPresentation.call({ id: params.fetch(:id) })
+
+    if result.success?
+      @form         = result.form
+      @presentation = result.presentation
+    else
+      render_not_found
+    end
   end
 
   def update
-    presentation = Presentation.find(params.fetch(:id))
+    result = UpdatePresentation.call(
+      { id:     params.fetch(:id),
+        params: params.fetch(:presentation_form) }
+    )
 
-    form = PresentationForm.new(params.fetch(:presentation_form))
-
-    command = UpdatePresentation.new(form, presentation)
-    command.subscribe(PresentationNotifier.new)
-    command.on(:successful) { |presentation| redirect_to presentation_path(presentation) }
-    command.on(:failed) { |form| @form = form; @presentation = presentation; render action: :edit }
-    command.call
+    if result.success?
+      redirect_to presentation_path(result.presentation)
+    else
+      @form         = result.form
+      @presentation = result.presentation
+      render action: :edit
+    end
   end
+
+  # def update
+  #   presentation = Presentation.find(params.fetch(:id))
+  #
+  #   form = PresentationForm.new(params.fetch(:presentation_form))
+  #
+  #   command = OldUpdatePresentation.new(form, presentation)
+  #   command.subscribe(PresentationNotifier.new)
+  #   command.on(:successful) { |presentation| redirect_to presentation_path(presentation) }
+  #   command.on(:failed) { |form| @form = form; @presentation = presentation; render action: :edit }
+  #   command.call
+  # end
 end

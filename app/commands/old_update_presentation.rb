@@ -1,4 +1,4 @@
-class UpdatePresentation
+class OldUpdatePresentation
   include Wisper::Publisher
 
   attr_reader :form, :presentation
